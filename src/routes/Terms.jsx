@@ -1,11 +1,12 @@
 import Logo from '../components/Logo/Logo';
+import Footer from "../components/Footer/Footer.jsx";
 
 export default function Terms() {
     return (
         <>
             <div className="bg-primary min-h-screen px-11 pt-4 pb-11 flex flex-col place-items-center space-y-4" id='terms' >
                 <Logo />
-                <div className='bg-white h-full w-full rounded-xl overflow-hidden flex flex-col p-20 space-y-3'>
+                <div className='bg-white h-full w-full rounded-xl overflow-hidden flex flex-col p-20 space-y-3 max-w-7xl'>
                     <h1 className="font-bold text-3xl">Términos y Condiciones</h1>
                     <h2 className="font-bold text-xl">Estos términos y condiciones rigen el uso del servicio de chat en WhatsApp integrado con la inteligencia artificial proporcionado por BigMelo.</h2>
                     <p>Al utilizar el Servicio, usted acepta cumplir con estos T&C.</p>
@@ -82,6 +83,7 @@ export default function Terms() {
                         </li>
                     </ol>
                 </div>
+                <Footer />
             </div>
         </>
     )
