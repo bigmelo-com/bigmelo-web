@@ -14,8 +14,17 @@ export default {
         'title': '#34B7F1',
         'paragraph' : '#5B718F',
         'button' : '#34D3A3',
+        'phoneBody' : '#D9D9D9',
+        'userMessage':'#00a884',
+        'botMessage':'#343f46',
+        'border':'#5B718F',
       },
+      screens: {
+        'phone':'1127px',
+        'sphone':'1017px'
+      }
     },
+    
   },
   plugins: [],
 }

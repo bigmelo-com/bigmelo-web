@@ -7,9 +7,9 @@ export default function Header () {
         className="relative flex items-center justify-center h-fit overflow-hidden text-center"
         >
             <div
-                className="bg-gradient-to-t from-secondary from-85% to-100% relative z-30 text-2x h-full w-full flex flex-col items-center justify-center p-36"
+                className="relative z-30 text-2x h-full w-full flex flex-col items-center justify-center sm:px-8 py-36 md:px-36"
             >
-                <div className="w-2/3 flex flex-col items-center">
+                <div className="flex flex-col items-center">
 
                     <h1 className="text-title text-6xl font-light mb-4 mx-4">
                         ¡Pregunta lo que sea!
@@ -18,7 +18,7 @@ export default function Header () {
                         Aprovecha todo el poder de la inteligencia artificial en tu WhatsApp. Investiga, aprende o simplemente diviértete preguntando lo que quieras.
                     </p>
 
-                    <Link className="bg-button p-4 rounded-xl m-4 font-medium cursor-pointer" to="footer" spy={true} smooth={true} offset={50} duration={500} >Cónocer más</Link>
+                    <Link className="bg-button p-4 rounded-xl m-4 font-medium cursor-pointer" to="slider" spy={true} smooth={true} offset={-30} duration={500} >Cónocer más</Link>
 
                     <img className="m-6" src="../public/more.svg" alt="more" />
 
@@ -33,7 +33,7 @@ export default function Header () {
                 autoPlay
                 loop
                 muted
-                className="absolute z-10 w-auto min-w-full min-h-full max-w-none "
+                className="opacity-10 absolute z-10 w-auto min-w-full min-h-full max-w-none "
             >
             <source
                 src="/public/video.mp4"
