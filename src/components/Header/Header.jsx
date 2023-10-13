@@ -18,7 +18,7 @@ export default function Header () {
                         Aprovecha todo el poder de la inteligencia artificial en tu WhatsApp. Investiga, aprende o simplemente diviértete preguntando lo que quieras.
                     </p>
 
-                    <Link className="bg-button p-4 rounded-xl m-4 font-medium cursor-pointer" to="footer" spy={true} smooth={true} offset={50} duration={500} >Cónocer más</Link>
+                    <Link className="bg-button p-4 rounded-xl m-4 font-medium cursor-pointer" to="slider" spy={true} smooth={true} offset={-30} duration={500} >Cónocer más</Link>
 
                     <img className="m-6" src="../public/more.svg" alt="more" />
 
