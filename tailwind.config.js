@@ -20,7 +20,8 @@ export default {
         'border':'#5B718F',
       },
       screens: {
-        'phone':'1127px',
+        'slider-text':'1207px',
+        'phone':'1164px',
         'sphone':'1017px'
       }
     },
