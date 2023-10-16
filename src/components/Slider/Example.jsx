@@ -7,6 +7,23 @@ export default function Example(data) {
     const example = data[data.id];
     const isInView = useInView(ref, {once: true});
     const mainControls = useAnimation();
+    const variants = {
+        hidden: {
+            opacity: 0, 
+            y: 75, 
+            display: 'none'
+        },
+        visible: {
+            opacity: 1, 
+            y: 0, 
+            display: 'block'
+        },
+        block: {
+            opacity: 1, 
+            y: 0, 
+            display: 'flex'
+        },
+    }
     let className;
     let delayValue = 1;
 
@@ -15,6 +32,12 @@ export default function Example(data) {
             mainControls.start("visible");
         }
     }, [isInView]);
+
+    useEffect(() => {
+        if (Number.isInteger(data.id) && isInView) {
+            mainControls.start("visible");
+        }
+    }, [data.id]);
 
     for(let i in example) {
         if (i%2 == 0 ){
@@ -28,15 +51,13 @@ export default function Example(data) {
         }
 
         message.push(
-            <>
                 <motion.div 
+                    key={i}
                     className={className}
-                    variants={{
-                        hidden: {opacity: 0, y: 75, display: 'none'},
-                        visible: {opacity: 1, y: 0, display: 'block'},
-                    }}
-                    initial="hidden"
+                    variants={variants}
+                    initial= "hidden"
                     animate= {mainControls}
+                    exit="hidden"
                     transition={{
                         duration: 0.75,
                         delay: delayValue
@@ -44,19 +65,26 @@ export default function Example(data) {
                 >
                     <p className='self-end'>{example[i]}</p>
                 </motion.div>
-            </>
         )
         
         delayValue += 2;
     }
   return (
     <>
-        <div ref={ref} className={data.className}>
+        <motion.div 
+            key={data.id}
+            ref={ref}
+            className={data.className}
+            variants={variants}
+            initial= "hidden"
+            animate= "block"
+            exit="exit"
+            transition={{
+                duration: 0.75,
+            }}
+            >
             {message}
-        </div>
+        </motion.div>
     </>
   )
 }
-
-
-
