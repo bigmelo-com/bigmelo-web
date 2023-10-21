@@ -18,6 +18,8 @@ export default {
         'userMessage':'#00a884',
         'botMessage':'#343f46',
         'border':'#5B718F',
+        'error': '#d13030',
+        'success': '#37d108',
       },
       screens: {
         'slider-text':'1207px',
