@@ -32,7 +32,7 @@ export default function RegisterForm() {
     });
 
     axios
-      .post("http://localhost:8090/v1/auth/signup", post)
+      .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/signup", post)
       .then(res => {
         dispatch(changeToken(res.data.access_token));
         setMessage(["¡El usuario fue registrado con exito!", "bg-success"]);
@@ -58,6 +58,7 @@ export default function RegisterForm() {
             className={inputClass}
             placeholder="Nombre"
             onChange={handleInput}
+            autoComplete = "given-name"
             required
           />
           <input
@@ -66,6 +67,7 @@ export default function RegisterForm() {
             className={inputClass}
             placeholder="Apellido"
             onChange={handleInput}
+            autoComplete = "family-name"
             required
           />
           <input
@@ -74,6 +76,7 @@ export default function RegisterForm() {
             type="email"
             placeholder="Correo electrónico"
             onChange={handleInput}
+            autoComplete = "email"
             required
           />
 
@@ -83,6 +86,7 @@ export default function RegisterForm() {
             onChange={setValue}
             placeholder="Teléfono"
             defaultCountry="co"
+            autoComplete = "tel"
             required
           />
 
@@ -92,6 +96,7 @@ export default function RegisterForm() {
             type="password"
             placeholder="Contraseña"
             onChange={handleInput}
+            autoComplete = "new-password"
             required
           />
           <input
@@ -100,6 +105,7 @@ export default function RegisterForm() {
             type="password"
             placeholder="Repetir contraseña"
             onChange={handleInput}
+            autoComplete = "new-password"
             required
           />
 
