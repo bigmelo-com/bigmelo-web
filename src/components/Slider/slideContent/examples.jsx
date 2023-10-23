@@ -37,7 +37,7 @@ export const example = {
         ¡Hola! ¡Bienvenido! ¿En qué puedo ayudarte hoy?
       </>,
       <>
-        ¿Cómo cambio la bujía de mi moto?
+        ¿Cómo hago arroz con leche?
       </>,
       <>
         Claro, aquí tienes la receta para hacer arroz con leche:<br/>
