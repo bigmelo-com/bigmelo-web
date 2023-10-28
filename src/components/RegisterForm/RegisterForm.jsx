@@ -6,9 +6,10 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
 
-export default function RegisterForm() {
+export default function RegisterForm({ show=true }) {
   const inputClass =
     "w-[504px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
+  const componentClass = ("flex justify-center pt-[10%] pb-[15%]") + (show ? "":" hidden");
   const [message, setMessage] = useState(["", ""]);
   const [value, setValue] = useState("");
   const [post, setPost] = useState({});
@@ -44,7 +45,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="flex justify-center pt-[10%] pb-[15%]">
+    <div className={componentClass}>
       <div className="flex flex-col text-center max-w-[504px]">
         <form onSubmit={handleSubmit} id="form">
           <h3 className="text-title text-[16px] p-2">¡Qué estás esperando!</h3>
