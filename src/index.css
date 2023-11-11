@@ -5,8 +5,9 @@
 
 body {
     font-family: 'Space Grotesk'; 
+    min-height: 100vh;
 }
 
-/* .main{
-
-} */
+#root {
+    min-height: 100vh;
+}

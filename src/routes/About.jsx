@@ -1,12 +1,10 @@
-import Logo from '../components/Logo/Logo';
-import Footer from "../components/Footer/Footer.jsx";
+import Base from '../components/Base/Base';
 
 export default function About() {
     return (
         <>
-            <div className="bg-primary min-h-screen px-11 pt-4 pb-11 flex flex-col place-items-center space-y-4" id='about'>
-                <Logo />
-                <div className='bg-white h-full w-full rounded-xl overflow-hidden flex flex-col p-20 space-y-3 max-w-7xl'>
+            <Base bgColor='bg-white'>
+                <div className='p-20 space-y-3'>
                     <h1 className="font-bold text-3xl">Sobre Nosotros</h1>
                     <p>
                         Buscamos acercar la tecnología de AI a todos los usuarios a través Whatsapp que es la aplicación
@@ -24,9 +22,7 @@ export default function About() {
 
                     </p>
                 </div>
-
-                <Footer />
-            </div>
+            </Base>
         </>
     )
 }
