@@ -26,7 +26,7 @@ export default function Slider() {
       <div id="slider"></div>
 
       <motion.div 
-        className="px-16 pb-[200px] sphone:pt-20 pt-5 m-auto sphone:grid sphone:grid-cols-1 sphone:content-center" 
+        className="responsive:px-16 px-4 responsive:pb-[200px] pb-[50px] sphone:pt-20 pt-5 m-auto sphone:grid sphone:grid-cols-1 sphone:content-center" 
         variants={{
           hidden: {opacity: 0, y:100},
           visible: {opacity: 1, y:0}
@@ -43,7 +43,7 @@ export default function Slider() {
           Con bigmelo podrás
         </h2>
 
-        <div className="bg-primary slider-text:max-h-[370px] sphone:max-h-[400px] max-h-max flex flex-col sphone:flex-row rounded-lg phone:pl-44 sphone:pr-6 px-16 sphone:pt-0 pt-10 ">
+        <div className="bg-primary slider-text:max-h-[370px] sphone:max-h-[400px] max-h-max flex flex-col sphone:flex-row rounded-lg phone:pl-44 sphone:pr-6 responsive:px-16 sphone:pt-0 pt-10 ">
 
           <Phone {...example} id={currentSlide} />
 

@@ -1,6 +1,8 @@
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import {
   createBrowserRouter,
@@ -10,7 +12,7 @@ import './index.css';
 import Root from './routes/Root';
 import ErrorPage from './error-page';
 import About from './routes/About';
-import Terms from './routes/Terms'
+import Terms from './routes/Terms'; 
 
 const router = createBrowserRouter([
   {
@@ -28,10 +30,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+const persistor = persistStore(store);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <PersistGate persistor={persistor}>
+       <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </PersistGate>
   </>
 )
