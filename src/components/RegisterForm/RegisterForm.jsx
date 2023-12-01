@@ -1,26 +1,25 @@
 import { PhoneInput } from "react-international-phone";
 import { changeToken } from "../../redux/tokenSlice";
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import "react-international-phone/style.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
 
-export default function RegisterForm({ show=true }) {
+export default function RegisterForm({ show = true }) {
   const inputClass =
-    "w-[504px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
-  const componentClass = ("flex justify-center pt-[10%] pb-[15%]") + (show ? "":" hidden");
+    "responsive:w-[504px] w-[250px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
+  const componentClass =
+    "flex justify-center pt-[10%] pb-[15%]" + (show ? "" : " hidden");
   const [message, setMessage] = useState(["", ""]);
   const [value, setValue] = useState("");
   const [post, setPost] = useState({});
-  const [data, setData] = useState("");
   const dispatch = useDispatch();
 
-  const handleInput = event => {
+  const handleInput = (event) => {
     setPost({ ...post, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     let phone = value.split(" ");
     const full_number = phone.join("");
@@ -34,20 +33,19 @@ export default function RegisterForm({ show=true }) {
 
     axios
       .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/signup", post)
-      .then(res => {
+      .then((res) => {
         dispatch(changeToken(res.data.access_token));
         setMessage(["¡El usuario fue registrado con exito!", "bg-success"]);
       })
-      .catch(err => {
+      .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
-        console.log();
       });
   };
 
   return (
     <div className={componentClass}>
-      <div className="flex flex-col text-center max-w-[504px]">
-        <form onSubmit={handleSubmit} id="form">
+      <div className="flex flex-col text-center responsive:max-w-[504px]">
+        <form className="responsive:block flex flex-col items-center" onSubmit={handleSubmit} id="form">
           <h3 className="text-title text-[16px] p-2">¡Qué estás esperando!</h3>
           <h2 className="text-paragraph text-[32px] font-medium p-2">
             Registrate
@@ -59,7 +57,7 @@ export default function RegisterForm({ show=true }) {
             className={inputClass}
             placeholder="Nombre"
             onChange={handleInput}
-            autoComplete = "given-name"
+            autoComplete="given-name"
             required
           />
           <input
@@ -68,7 +66,7 @@ export default function RegisterForm({ show=true }) {
             className={inputClass}
             placeholder="Apellido"
             onChange={handleInput}
-            autoComplete = "family-name"
+            autoComplete="family-name"
             required
           />
           <input
@@ -77,7 +75,7 @@ export default function RegisterForm({ show=true }) {
             type="email"
             placeholder="Correo electrónico"
             onChange={handleInput}
-            autoComplete = "email"
+            autoComplete="email"
             required
           />
 
@@ -87,7 +85,7 @@ export default function RegisterForm({ show=true }) {
             onChange={setValue}
             placeholder="Teléfono"
             defaultCountry="co"
-            autoComplete = "tel"
+            autoComplete="tel"
             required
           />
 
@@ -97,7 +95,7 @@ export default function RegisterForm({ show=true }) {
             type="password"
             placeholder="Contraseña"
             onChange={handleInput}
-            autoComplete = "new-password"
+            autoComplete="new-password"
             required
           />
           <input
@@ -106,11 +104,11 @@ export default function RegisterForm({ show=true }) {
             type="password"
             placeholder="Repetir contraseña"
             onChange={handleInput}
-            autoComplete = "new-password"
+            autoComplete="new-password"
             required
           />
 
-          <button className="w-[504px] my-6 p-3 bg-button rounded-lg">
+          <button className="responsive:w-[504px] w-[250px] my-6 p-3 bg-button rounded-lg">
             Registrarme
           </button>
         </form>

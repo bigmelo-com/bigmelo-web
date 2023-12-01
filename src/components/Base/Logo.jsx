@@ -13,7 +13,7 @@ export default function Logo() {
         });
       }}
     >
-      <img className="w-28 pb-6" src="/public/logo.svg " alt="logo" />
+      <img className="w-28" src="/public/logo.svg " alt="logo" />
     </Link>
   );
 }

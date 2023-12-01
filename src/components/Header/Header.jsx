@@ -28,7 +28,7 @@ export default function Header() {
           <img className="m-6" src="../public/more.svg" alt="more" />
         </div>
 
-        <p className="text-paragraph text-3xl font-light m-4 w-full">
+        <p className="text-paragraph responsive:text-3xl text-lg font-light px-4 m-4 w-full">
           Bigmelo potencia lo mejor de la inteligencia artificial dentro de
           whatsapp, para brindarte una{" "}
           <span className="text-title">

@@ -17,9 +17,9 @@ export default function WhatsappButton() {
   useEffect(() => {}, []);
 
   return (
-    <a href="https://api.whatsapp.com/send?phone=14155238886&text=Join%20afraid-know" target="_blank">
+    <a href="https://api.whatsapp.com/send?phone=13217328611&text=Hola!" target="_blank">
       <motion.div
-        className="fixed bottom-10 right-10 flex flex-col items-center z-40"
+        className="fixed responsive:bottom-10 bottom-3 responsive:right-10 right-3 flex flex-col items-center z-40"
         variants={variants}
         initial="hidden"
         animate="visible"

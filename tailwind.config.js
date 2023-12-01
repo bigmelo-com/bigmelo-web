@@ -3,7 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    './pages/**/*.{html,js}',
+    './routes/**/*.{html,js}',
     './components/**/*.{html,js}',
   ],
   theme: {
@@ -24,7 +24,8 @@ export default {
       screens: {
         'slider-text':'1207px',
         'phone':'1164px',
-        'sphone':'1017px'
+        'sphone':'1017px',
+        'responsive': '750px',
       }
     },
     
