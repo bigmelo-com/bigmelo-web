@@ -1,4 +1,4 @@
-import { changeToken, selectToken, selectLogged } from "../../redux/tokenSlice";
+import { changeToken, selectLogged } from "../../redux/tokenSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -6,15 +6,16 @@ import Footer from "./Footer";
 import Logo from "./Logo";
 import axios from "axios";
 
-export default function Base({ children, bgColor = "bg-secondary" }) {
+export default function Base({ children, bgColor = "bg-secondary", backButton=false }) {
   // Styles
   const inputClass =
-    "response:w-[504px] w-[250px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
+    "responsive:w-[504px] w-[250px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
   const style =
     bgColor +
-    " min-h-fit w-full rounded-xl overflow-hidden max-w-7xl pt-0 mt-0";
+    " min-h-fit w-full rounded-xl overflow-hidden max-w-7xl pt-0 mt-0 flex flex-col ";
   const loginButton =
     "absolute responsive:right-1 right-6 font-medium text-button flex";
+  const navButton = "absolute responsive:left-1 right-[100px] font-medium text-button flex w-fit"
 
   // States
   const [isOpen, setOpen] = useState(false);
@@ -23,17 +24,13 @@ export default function Base({ children, bgColor = "bg-secondary" }) {
 
   // Functions
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
   const logged = useSelector(selectLogged);
-
   const handleInput = (event) => {
     setPost({ ...post, [event.target.name]: event.target.value });
   };
-
   const logout = () => {
     dispatch(changeToken({ access_token: "", logged: false }));
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -57,15 +54,47 @@ export default function Base({ children, bgColor = "bg-secondary" }) {
         <div className="flex relative w-full max-w-7xl responsive:p-0 px-6 responsive:justify-center">
           <Logo />
           {logged ? (
-            <Link
-              className={loginButton}
+            <>
+            {backButton ? (
+              <Link
+              className={navButton}
+              to={`/`}
               onClick={() => {
-                logout();
+                navigate(`/`, { replace: true });
+                window.scrollTo({
+                  top: 0
+                });
               }}
-            >
-              <img className="mr-2" src="/public/login.svg" alt="login" />
-              Salir
-            </Link>
+              >
+                <img className="mr-2" src="/public/back_button.svg" alt="login" />
+                Regresar
+              </Link>
+            ):(
+              <Link
+              className={navButton}
+              to={`/profile`}
+              onClick={() => {
+                navigate(`/profile`, { replace: true });
+                window.scrollTo({
+                  top: 0
+                });
+              }}
+              >
+                <img className="mr-2" src="/public/chat.svg" alt="login" />
+                Mis Mensajes
+              </Link>
+            )}
+            <Link
+            className={loginButton}
+            onClick={() => {
+              logout();
+            }}
+            to={`/`}
+          >
+            <img className="mr-2" src="/public/login.svg" alt="login" />
+            Salir
+          </Link>
+            </>
           ) : (
             <Link
               className={loginButton}
@@ -79,8 +108,8 @@ export default function Base({ children, bgColor = "bg-secondary" }) {
           )}
         </div>
 
-        <div className={style}>
-          {children}
+        <div className={style}>\
+            {children}\
           <Footer />
         </div>
       </div>

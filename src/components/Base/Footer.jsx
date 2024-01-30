@@ -6,7 +6,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="flex flex-col items-center bg-primary rounded-md m-3 p-5"
+      className="flex flex-col items-center bg-primary rounded-md m-3 p-5 z-50"
       id="footer"
     >
       <Logo className="w-28 pb-6" />
