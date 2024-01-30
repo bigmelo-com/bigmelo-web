@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../Logo/Logo";
+import Logo from "./Logo";
 
 export default function Footer() {
   const navigate = useNavigate();
 
   return (
     <footer
-      className="flex flex-col items-center bg-primary rounded-md m-3 p-5"
+      className="flex flex-col items-center bg-primary rounded-md m-3 p-5 z-50"
       id="footer"
     >
       <Logo className="w-28 pb-6" />

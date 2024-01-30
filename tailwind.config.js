@@ -24,7 +24,8 @@ export default {
       screens: {
         'slider-text':'1207px',
         'phone':'1164px',
-        'sphone':'1017px'
+        'sphone':'1017px',
+        'responsive': '750px',
       }
     },
     

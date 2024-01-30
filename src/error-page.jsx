@@ -1,13 +1,12 @@
-import { useRouteError } from "react-router-dom";
+import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import Logo from "./components/Base/Logo";
 
 export default function ErrorPage() {
     const error = useRouteError();
-    console.error(error);
-
     return (
         <>
             <div className="bg-primary min-h-screen px-11 pt-4 pb-11 flex flex-col place-items-center space-y-4" >
-                <img src="/public/logo.svg " alt="logo" />
+                <Logo />
                 <div className='bg-secondary w-full rounded-xl overflow-hidden flex flex-col place-items-center'>
                     <h1 className="text-title text-5xl mt-12">Oops!</h1>
                     <p className="text-paragraph text-xl">Sorry, an unexpected error has occurred.</p>
