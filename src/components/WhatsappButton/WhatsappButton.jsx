@@ -19,7 +19,7 @@ export default function WhatsappButton() {
   return (
     <a href="https://api.whatsapp.com/send?phone=13217328611&text=Hola!" target="_blank">
       <motion.div
-        className="fixed responsive:bottom-10 bottom-3 responsive:right-10 right-3 flex flex-col items-center z-40"
+        className="fixed responsive:bottom-10 bottom-3 responsive:right-10 right-3 flex flex-col items-center z-50"
         variants={variants}
         initial="hidden"
         animate="visible"
