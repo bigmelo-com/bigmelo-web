@@ -1,4 +1,5 @@
 import { PhoneInput } from "react-international-phone";
+import parsePhoneNumber from 'libphonenumber-js';
 import { changeToken } from "../../redux/tokenSlice";
 import 'react-international-phone/style.css';
 import { useDispatch } from "react-redux";
@@ -13,7 +14,6 @@ export default function RegisterForm({ show = true }) {
     "flex justify-center pt-[10%] pb-[15%]" + (show ? "" : " hidden");
   const [message, setMessage] = useState(["", ""]);
   const [phone, setPhone] = useState("");
-  const [country, setCountry] = useState("");
   const [post, setPost] = useState({});
   const dispatch = useDispatch();
 
@@ -23,12 +23,12 @@ export default function RegisterForm({ show = true }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const phone_number = phone.replace(country, '');
+    const number = parsePhoneNumber(phone);
 
     setPost({
       ...post,
-      country_code: country,
-      phone_number: phone_number,
+      country_code: '+' + number.countryCallingCode,
+      phone_number: number.nationalNumber,
       full_phone_number: phone
     });
 
@@ -82,14 +82,12 @@ export default function RegisterForm({ show = true }) {
 
           <PhoneInput
             className="mt-8"
-            onChange={(phone, country) => {
-              setPhone(phone);
-              setCountry('+' + country.country.dialCode);
-            }}
+            value={phone}
+            onChange={setPhone}
             placeholder="Teléfono"
             defaultCountry="co"
             autoComplete="tel"
-            disableDialCodeAndPrefix={true}
+            forceDialCode={true}
             required={true}
           />
 
