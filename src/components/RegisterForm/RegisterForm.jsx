@@ -15,6 +15,7 @@ export default function RegisterForm({ show = true }) {
   const [message, setMessage] = useState(["", ""]);
   const [phone, setPhone] = useState("");
   const [post, setPost] = useState({});
+  const [waitingResponse, setWaitingResponse] = useState(false);
   const dispatch = useDispatch();
 
   const handleInput = (event) => {
@@ -24,29 +25,36 @@ export default function RegisterForm({ show = true }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const number = parsePhoneNumber(phone);
+    setWaitingResponse(true);
 
-    setPost({
+    const data = {
       ...post,
       country_code: '+' + number.countryCallingCode,
       phone_number: number.nationalNumber,
       full_phone_number: phone
-    });
+    }
 
     axios
-      .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/signup", post)
+      .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/signup", data)
       .then((res) => {
-        dispatch(changeToken(res.data.access_token));
+        dispatch(changeToken({ access_token: res.data.access_token, logged: true }));
         setMessage(["¡El usuario fue registrado con exito!", "bg-success"]);
+        window.location.href = '/validate';
       })
       .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
-      });
-  };
-
-  return (
+      }).finally(() => setWaitingResponse(false));
+    };
+ 
+    return (
     <div className={componentClass}>
       <div className="flex flex-col text-center responsive:max-w-[504px]">
-        <form className="responsive:block flex flex-col items-center" onSubmit={handleSubmit} id="form">
+        <form className="responsive:block flex flex-col items-center relative" onSubmit={handleSubmit} id="form">
+          {waitingResponse && (
+            <div className="bg-opacity-60 absolute w-full h-full bg-secondary  z-[5] flex justify-center items-center">
+              <div className="h-12 w-12 border-4 border-l-white border-r-white border-b-white border-t-button animate-spin ease-linear rounded-full"></div>
+            </div>
+          )}
           <h3 className="text-title text-[16px] p-2">¡Qué estás esperando!</h3>
           <h2 className="text-paragraph text-[32px] font-medium p-2">
             Registrate
@@ -81,7 +89,7 @@ export default function RegisterForm({ show = true }) {
           />
 
           <PhoneInput
-            className="mt-8"
+            className="mt-8 responsive:max-w-[504px] max-w-[250px]"
             value={phone}
             onChange={setPhone}
             placeholder="Teléfono"

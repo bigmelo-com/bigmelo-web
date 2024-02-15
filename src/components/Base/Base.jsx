@@ -1,12 +1,12 @@
-import { changeToken, selectLogged } from "../../redux/tokenSlice";
+import { changeToken, selectLogged, selectToken } from "../../redux/tokenSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Logo from "./Logo";
 import axios from "axios";
 
-export default function Base({ children, bgColor = "bg-secondary", backButton=false }) {
+export default function Base({ children, bgColor = "bg-secondary", backButton=false, checkRole=true }) {
   // Styles
   const inputClass =
     "responsive:w-[504px] w-[250px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
@@ -19,12 +19,14 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
 
   // States
   const [isOpen, setOpen] = useState(false);
+  const [showActivationMessage, setShowActivationMessage] = useState(false);
   const [post, setPost] = useState({});
   const [message, setMessage] = useState(["", ""]);
 
   // Functions
   const dispatch = useDispatch();
   const logged = useSelector(selectLogged);
+  const token = useSelector(selectToken);
   const handleInput = (event) => {
     setPost({ ...post, [event.target.name]: event.target.value });
   };
@@ -48,9 +50,37 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
       });
   };
 
+  useEffect(() => {
+    (logged && checkRole) && (
+      axios
+        .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 401) setShowActivationMessage(true); 
+        })
+    );
+  },[isOpen]);
+
   return (
     <>
-      <div className="bg-primary min-h-screen responsive:px-11 pt-4 responsive:pb-11 flex flex-col place-items-center  space-y-4">
+      <div className="bg-primary min-h-screen responsive:px-11 pt-4 responsive:pb-11 flex flex-col place-items-center  space-y-4 relative">
+        {showActivationMessage && (
+          <Link
+          className="fixed z-50 bg-error p-4 rounded-md responsive:max-w-lg max-w-xs text-center"
+          to={`/validate`}
+          onClick={() => {
+            navigate(`/validate`, { replace: true });
+            window.scrollTo({
+              top: 0
+            });
+          }}
+          >
+            Aún no activas tu cuenta, activa tu cuenta haciendo click <u>aquí</u> para disfrutar de Bigmelo
+          </Link>
+        )}
         <div className="flex relative w-full max-w-7xl responsive:p-0 px-6 responsive:justify-center">
           <Logo />
           {logged ? (
@@ -70,6 +100,7 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
                 Regresar
               </Link>
             ):(
+
               <Link
               className={navButton}
               to={`/profile`}
@@ -108,8 +139,8 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
           )}
         </div>
 
-        <div className={style}>\
-            {children}\
+        <div className={style}>
+            {children}
           <Footer />
         </div>
       </div>

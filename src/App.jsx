@@ -4,6 +4,7 @@ import ErrorPage from "./error-page";
 import About from "./routes/About";
 import Terms from "./routes/Terms";
 import Profile from "./routes/Profile";
+import ValidateUser from "./routes/ValidateUser"
 
 export function App() {
     const router = createBrowserRouter([
@@ -25,6 +26,11 @@ export function App() {
         {
           path: "profile",
           element: <Profile />,
+          errorElement: <ErrorPage/>
+        },
+        {
+          path: "validate",
+          element: <ValidateUser />,
           errorElement: <ErrorPage/>
         },
       ]);

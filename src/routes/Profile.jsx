@@ -8,6 +8,7 @@ import { motion} from "framer-motion";
 export default function Profile() {
   const subTitleClass = "text-title text-2xl";
   const textClass = "text-white text-4xl";
+  const [waitingResponse, setWaitingResponse] = useState(false);
   const [userData, setUserData] = useState(false);
   const [error, setError] = useState(false);
   const token = useSelector(selectToken);
@@ -31,6 +32,8 @@ export default function Profile() {
   };
 
   useEffect(() => {
+    setWaitingResponse(true);
+
     axios
       .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/profile", {
         headers: {
@@ -42,7 +45,8 @@ export default function Profile() {
       })
       .catch((err) => {
         setError(err);
-      });
+      })
+      .finally(() => setWaitingResponse(false));
   }, []);
 
   error && throwError(error);
@@ -57,6 +61,11 @@ export default function Profile() {
         animate="visible"
         exit="exit"
         >
+          {waitingResponse && (
+            <div className="bg-opacity-60 absolute w-full h-full bg-secondary  z-[5] flex justify-center items-center">
+                <div className="h-12 w-12 border-4 border-l-white border-r-white border-b-white border-t-button animate-spin ease-linear rounded-full"></div>
+            </div>
+          )}
           {userData && (
             <>
               <h2 className={subTitleClass}>Hasta hoy tienes:</h2>
