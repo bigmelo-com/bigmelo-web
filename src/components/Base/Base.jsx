@@ -59,7 +59,7 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
           }
         })
         .catch((err) => {
-          if (err.response.status === 401) setShowActivationMessage(true); 
+          if (err.response.status === 401 || err.response.status === 403) setShowActivationMessage(true); 
         })
     );
   },[isOpen]);
