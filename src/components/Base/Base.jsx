@@ -32,6 +32,7 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
   };
   const logout = () => {
     dispatch(changeToken({ access_token: "", logged: false }));
+    showActivationMessage(false);
   };
   const handleSubmit = (event) => {
     event.preventDefault();

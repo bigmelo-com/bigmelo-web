@@ -8,6 +8,7 @@ export default function ValidationForm() {
   const [waitingResponse, setWaitingResponse] = useState(false);
   const [message, setMessage] = useState(["", ""]);
   const [code, setCode] = useState("");
+  const [isDisableGetNewCode, setIsDisableGetNewCode] = useState(false);
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
@@ -35,10 +36,11 @@ export default function ValidationForm() {
       }).finally(() => setWaitingResponse(false));
   };
 
-  const handleNewCode = () => {
+  const handleGetNewCode = () => {
     setWaitingResponse(true);
 
-    axios
+    if(!isDisableGetNewCode){
+      axios
       .patch(import.meta.env.VITE_LOCAL_API_URL + "/v1/user/validation-code", {}, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -50,6 +52,14 @@ export default function ValidationForm() {
       .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
       }).finally(() => setWaitingResponse(false));
+
+      setIsDisableGetNewCode(true);
+      setTimeout(() => setIsDisableGetNewCode(false), 60000);
+    } else {
+      setMessage(["Debes esperar 1 minuto para volver a pedir un código.", "bg-error"]);
+      setWaitingResponse(false)
+    }
+
   };
 
   const handleChange = event => {
@@ -89,8 +99,9 @@ export default function ValidationForm() {
                     />
                     <Link
                     className="text-title underline cursor-pointer text-center"
-                    onClick={handleNewCode}
+                    onClick={handleGetNewCode}
                     to=""
+                    disabled={isDisableGetNewCode}
                     >
                         ¿No recibiste el codigo? Solicita uno nuevo haciendo click aquí
                     </Link>
