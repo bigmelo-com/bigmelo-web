@@ -35,10 +35,11 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
 
     const logout = () => {
         dispatch(changeToken({ access_token: "", logged: false }));
+        setIsBurguerMenuOpen(false);
     };
 
     const toggleBurgerMenu =  () => {
-        setIsBurguerMenuOpen(!isBurguerMenuOpen);
+        screen.width < 750 ? setIsBurguerMenuOpen(!isBurguerMenuOpen) : setIsBurguerMenuOpen(false);
     };
     
     window.addEventListener('scroll', () => {
@@ -96,23 +97,23 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
         <div className={(isScrolled ? "pl-11 responsive:w-fit " : " justify-center ") + "relative bg-primary w-full flex"}>    
             <Logo style="h-fit w-fit justify-center bg-primary py-5"/>
             <button className="absolute w-[30px] top-4 right-5 responsive:hidden" onClick={toggleBurgerMenu}>
-                <img src={"/public/public/" + (isBurguerMenuOpen ? "close_button.svg" : "burguer_icon.svg")} alt="burguer-icon" className={"w-full transition-all duration-200 " + (isBurguerMenuOpen ? 'rotate-180':'')}/>
+                <img src={"/public/" + (isBurguerMenuOpen ? "close_button.svg" : "burguer_icon.svg")} alt="burguer-icon" className={"w-full transition-all duration-200 " + (isBurguerMenuOpen ? 'rotate-180':'')}/>
             </button>
         </div>
 
 
         <nav className={navBarResponsive + (isScrolled ? " responsive:justify-end " : " responsive:justify-center pb-5 ") + "flex flex-col text-button w-full h-full bg-primary z-[60] transition-all duration-300 ease-in-out" + (!isBurguerMenuOpen ? ' translate-y-full' : ' ')}>
             {backButton && (
-                <NavLink to='/' image='/public/back_button.svg' linkStyle={linkStyle}>
+                <NavLink to='/' image='/public/back_button.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
                     Regresar
                 </NavLink>
             )}
             {hasNavigation && (
                 <>
-                <NavLink linkStyle={linkStyle} to="/#home" image='/public/home.svg'>
+                <NavLink linkStyle={linkStyle} to="/#home" image='/public/home.svg' action={toggleBurgerMenu}>
                     Inicio
                 </NavLink>
-                <NavLink linkStyle={linkStyle} to="/#slider" image='/public/how_to.svg'>
+                <NavLink linkStyle={linkStyle} to="/#slider" image='/public/how_to.svg' action={toggleBurgerMenu}>
                     ¿Como usar Bigmelo?
                 </NavLink>
                 </>
@@ -120,7 +121,7 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
             {isLogged ? (
                 <>
                 {(isActivated && hasNavigation) && (
-                    <NavLink to='/profile' image='/public/chat.svg' linkStyle={linkStyle}>
+                    <NavLink to='/profile' image='/public/chat.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
                         Mis Mensajes
                     </NavLink>  
                 )}
@@ -130,10 +131,10 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
                 </>
             ):(
                 <>
-                <NavLink to='/#register' image='/public/register.svg' linkStyle={linkStyle} >
+                <NavLink to='/#register' image='/public/register.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
                     Registrate
                 </NavLink>   
-                <NavLink image='/public/login.svg' linkStyle={linkStyle} action={() => setIsLoginFormOpen(true)}>
+                <NavLink image='/public/login.svg' linkStyle={linkStyle} action={() => {setIsLoginFormOpen(true); toggleBurgerMenu();}}>
                     Ingresar
                 </NavLink>  
                 </>
