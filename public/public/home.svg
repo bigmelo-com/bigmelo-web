@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="21px" viewBox="0 0 22 21" version="1.1">
+<g id="surface1">
+<path style="fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 31 3.533854 L 3.533736 31.003534 " transform="matrix(0.354839,0,0,0.355932,0,0)"/>
+<path style="fill:none;stroke-width:6;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 47.997159 13.005022 L 47.997159 17.998512 " transform="matrix(0.354839,0,0,0.355932,0,0)"/>
+<path style="fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 11.503906 33.494792 L 11.503906 56.497768 " transform="matrix(0.354839,0,0,0.355932,0,0)"/>
+<path style="fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 50.496094 56.497768 L 11.503906 56.497768 " transform="matrix(0.354839,0,0,0.355932,0,0)"/>
+<path style="fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 51.497869 33.494792 L 51.497869 56.497768 " transform="matrix(0.354839,0,0,0.355932,0,0)"/>
+<path style="fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 2.498811 -2.498811 L 41.344378 -2.501227 " transform="matrix(0.250909,0.251682,0.250909,-0.251682,11,0)"/>
+<path style="fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(20.392157%,82.745098%,63.921569%);stroke-opacity:1;stroke-miterlimit:4;" d="M 27.003906 56.003906 L 27.003906 47.915551 C 27.003906 46.796131 27.091974 44.99628 31.253196 44.99628 C 36.460227 44.99628 35.986861 46.796131 35.986861 48.146019 C 35.986861 49.934896 35.986861 54.204055 35.986861 55.773438 " transform="matrix(0.354839,0,0,0.355932,0,0)"/>
+</g>
+</svg>

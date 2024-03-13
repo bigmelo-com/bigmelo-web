@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './PhoneInputStyles.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm({ show = true }) {
   const inputClass =
@@ -17,7 +18,8 @@ export default function RegisterForm({ show = true }) {
   const [post, setPost] = useState({});
   const [waitingResponse, setWaitingResponse] = useState(false);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   const handleInput = (event) => {
     setPost({ ...post, [event.target.name]: event.target.value });
   };
@@ -39,7 +41,7 @@ export default function RegisterForm({ show = true }) {
       .then((res) => {
         dispatch(changeToken({ access_token: res.data.access_token, logged: true }));
         setMessage(["¡El usuario fue registrado con exito!", "bg-success"]);
-        window.location.href = '/validate';
+        navigate('/validate');
       })
       .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
@@ -47,7 +49,8 @@ export default function RegisterForm({ show = true }) {
     };
  
     return (
-    <div className={componentClass}>
+    <div className={componentClass} id="register">
+      <div id="register"></div>
       <div className="flex flex-col text-center responsive:max-w-[504px]">
         <form className="responsive:block flex flex-col items-center relative" onSubmit={handleSubmit} id="form">
           {waitingResponse && (

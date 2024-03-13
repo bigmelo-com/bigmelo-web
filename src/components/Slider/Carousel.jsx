@@ -15,7 +15,7 @@ export default function Carousel({id}) {
             >
                 <CarouselItem id = {id}/>
             </motion.div>
-                <nav className="flex min-w-full max-h-[8px] mb-10 overflow-hidden space-x-4 px-10 sphone:justify-start justify-center">
+                <nav className="flex min-w-full max-h-[8px] mb-10 overflow-hidden space-x-4 px-10 responsive-m:justify-start justify-center">
                     <Link className={active} >.</Link>
                     <Link className={unactive}>.</Link>
                     <Link className={unactive}>.</Link>

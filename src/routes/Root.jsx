@@ -1,7 +1,7 @@
 import { selectLogged } from "../redux/tokenSlice";
 import WhatsappButton from "../components/WhatsappButton/WhatsappButton";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
-import Header from "../components/Header/Header";
+import Home from "../components/Home/Home";
 import Slider from "../components/Slider/Slider";
 import Base from "../components/Base/Base";
 import { useSelector } from "react-redux";
@@ -12,8 +12,8 @@ export default function Root() {
 
   return (
     <>
-      <Base>
-        <Header />
+      <Base hasNavigation={true}>
+        <Home />
         <Slider />
         <RegisterForm show={!logged} />
         <WhatsappButton />

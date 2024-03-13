@@ -3,7 +3,7 @@ import { items } from "./slideContent/items";
 
 export default function Slide({ id }) {
   const style =
-    "min-w-fit sphone:min-h-fit sphone:p-10 px-8 pt-3 pb-10 flex flex-col sphone:justify-center sphone:text-left text-center";
+    "min-w-fit responsive-m:min-h-fit responsive-m:p-10 px-8 pt-3 pb-10 flex flex-col responsive-m:justify-center responsive-m:text-left text-center";
 
   const variants = {
     hidden: {

@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectToken } from "../redux/tokenSlice";
 import { motion} from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const subTitleClass = "text-title text-2xl";
   const textClass = "text-white text-4xl";
   const [waitingResponse, setWaitingResponse] = useState(false);
   const [userData, setUserData] = useState(false);
-  const [error, setError] = useState(false);
   const token = useSelector(selectToken);
+  const navigate = useNavigate();
   const variants = {
     hidden: {
       y: "-10%",
@@ -27,10 +28,6 @@ export default function Profile() {
     }
   };
 
-  const throwError = (err) => {
-    throw new Error(err.message);
-  };
-
   useEffect(() => {
     setWaitingResponse(true);
 
@@ -44,12 +41,10 @@ export default function Profile() {
         setUserData(res.data.data);
       })
       .catch((err) => {
-        setError(err);
+        navigate('/');
       })
       .finally(() => setWaitingResponse(false));
   }, []);
-
-  error && throwError(error);
 
   return (
     <>

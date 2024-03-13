@@ -12,7 +12,6 @@ export default function ValidationForm() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setWaitingResponse(true);

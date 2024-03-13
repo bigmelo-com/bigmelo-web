@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "./Logo";
+import Logo from "./NavBar/Logo";
 
 export default function Footer() {
   const navigate = useNavigate();

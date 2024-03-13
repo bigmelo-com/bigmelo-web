@@ -10,6 +10,7 @@ export default {
     extend: {
       colors: {
         'primary': '#20262E',
+        'primary-hover': '#4b5563',
         'secondary': '#0D1114',
         'title': '#34B7F1',
         'paragraph' : '#5B718F',
@@ -23,8 +24,8 @@ export default {
       },
       screens: {
         'slider-text':'1207px',
-        'phone':'1164px',
-        'sphone':'1017px',
+        'responsive-l':'1164px',
+        'responsive-m':'1017px',
         'responsive': '750px',
       }
     },
