@@ -1,4 +1,4 @@
-import { Link } from "react-scroll/modules";
+import NavLink from '../Base/NavBar/NavLink';
 
 export default function Header() {
   return (
@@ -14,16 +14,9 @@ export default function Header() {
             que quieras.
           </p>
 
-          <Link
-            className="bg-button p-4 rounded-xl m-4 font-medium cursor-pointer"
-            to="slider"
-            spy={true}
-            smooth={true}
-            offset={50}
-            duration={500}
-          >
+          <NavLink linkStyle='bg-button p-4 rounded-xl m-4 font-medium cursor-pointer' to='/#slider'>
             Cónocer más
-          </Link>
+          </NavLink>
 
           <img className="m-6" src="../public/more.svg" alt="more" />
         </div>
