@@ -1,8 +1,6 @@
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function WhatsappButton() {
-  const mainControls = useAnimation();
   const variants = {
     hidden: {
       opacity: 0,
@@ -13,8 +11,6 @@ export default function WhatsappButton() {
       y: 0
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <a

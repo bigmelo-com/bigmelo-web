@@ -2,7 +2,7 @@ import { Link } from "react-scroll/modules";
 
 export default function Header() {
   return (
-    <header className="relative flex items-center justify-center h-fit overflow-hidden text-center">
+    <header className="relative flex items-center justify-center h-fit overflow-hidden text-center" id="home">
       <div className="relative z-30 text-2x h-full w-full flex flex-col items-center justify-center sm:px-8 py-36 md:px-36">
         <div className="flex flex-col items-center">
           <h1 className="text-title text-6xl font-light mb-4 mx-4">

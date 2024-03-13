@@ -4,8 +4,8 @@ export default function Terms() {
     return (
         <>
 
-            <Base bgColor='bg-white'>
-                <div className='p-20 space-y-3'>
+            <Base bgColor='bg-white' backButton={true}>
+                <div className='p-20 space-y-3 mt-11'>
                 <h1 className="font-bold text-3xl">Términos y Condiciones</h1>
                         <h2 className="font-bold text-xl">Estos términos y condiciones rigen el uso del servicio de chat en WhatsApp integrado con la inteligencia artificial proporcionado por BigMelo.</h2>
                         <p>Al utilizar el Servicio, usted acepta cumplir con estos T&C.</p>

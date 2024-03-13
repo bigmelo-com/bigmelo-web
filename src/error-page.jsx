@@ -1,5 +1,5 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
-import Logo from "./components/Base/Logo";
+import Logo from "./components/Base/NavBar/Logo";
 
 export default function ErrorPage() {
     const error = useRouteError();

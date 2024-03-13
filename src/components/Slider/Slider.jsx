@@ -23,10 +23,9 @@ export default function Slider() {
 
   return (
     <>
-      <div id="slider"></div>
-
       <motion.div 
-        className="responsive:px-16 px-4 responsive:pb-[200px] pb-[50px] sphone:pt-20 pt-5 m-auto sphone:grid sphone:grid-cols-1 sphone:content-center" 
+        id='slider'
+        className="responsive:px-16 px-4 responsive:pb-[200px] pb-[50px] responsive-m:pt-20 pt-5 m-auto responsive-m:grid responsive-m:grid-cols-1 responsive-m:content-center" 
         variants={{
           hidden: {opacity: 0, y:100},
           visible: {opacity: 1, y:0}
@@ -39,11 +38,11 @@ export default function Slider() {
         }}
       >
 
-        <h2 className="text-paragraph text-[32px] text-center sphone:pb-[160px] pb-[16px]" ref={ref}>
+        <h2 className="text-paragraph text-[32px] text-center responsive-m:pb-[160px] pb-[16px]" ref={ref}>
           Con bigmelo podrás
         </h2>
 
-        <div className="bg-primary slider-text:max-h-[370px] sphone:max-h-[400px] max-h-max flex flex-col sphone:flex-row rounded-lg phone:pl-44 sphone:pr-6 responsive:px-16 sphone:pt-0 pt-10 ">
+        <div className="bg-primary slider-text:max-h-[370px] responsive-m:max-h-[400px] max-h-max flex flex-col responsive-m:flex-row rounded-lg responsive-l:pl-44 responsive-m:pr-6 responsive:px-16 responsive-m:pt-0 pt-10 ">
 
           <Phone {...example} id={currentSlide} />
 
@@ -51,7 +50,7 @@ export default function Slider() {
             <div className="flex">
                   <Slide id = {currentSlide}/>
             </div>
-                <nav className="flex min-w-full max-h-[8px] mb-10 overflow-hidden space-x-4 px-10 sphone:justify-start justify-center">
+                <nav className="flex min-w-full max-h-[8px] mb-10 overflow-hidden space-x-4 px-10 responsive-m:justify-start justify-center">
                     <Link className={linkClass[0]} onClick={() => {setLinkClass([active, unactive, unactive]); setCurrentSlide(0)}}>.</Link>
                     <Link className={linkClass[1]} onClick={() => {setLinkClass([unactive, active, unactive]); setCurrentSlide(1)}}>.</Link>
                     <Link className={linkClass[2]} onClick={() => {setLinkClass([unactive, unactive, active]); setCurrentSlide(2)}}>.</Link>
