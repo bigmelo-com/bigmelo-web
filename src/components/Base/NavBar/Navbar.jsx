@@ -109,10 +109,10 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
             )}
             {hasNavigation && (
                 <>
-                <NavLink linkStyle={linkStyle} to="/#home" image='/public/public/home.svg'>
-                    Home
+                <NavLink linkStyle={linkStyle} to="/#home" image='/public/home.svg'>
+                    Inicio
                 </NavLink>
-                <NavLink linkStyle={linkStyle} to="/#slider" image='/public/public/how_to.svg'>
+                <NavLink linkStyle={linkStyle} to="/#slider" image='/public/how_to.svg'>
                     ¿Como usar Bigmelo?
                 </NavLink>
                 </>
@@ -130,12 +130,12 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
                 </>
             ):(
                 <>
-                <NavLink image='/public/login.svg' linkStyle={linkStyle} action={() => setIsLoginFormOpen(true)}>
-                    Ingresar
-                </NavLink>  
                 <NavLink to='/#register' image='/public/register.svg' linkStyle={linkStyle} >
                     Registrate
                 </NavLink>   
+                <NavLink image='/public/login.svg' linkStyle={linkStyle} action={() => setIsLoginFormOpen(true)}>
+                    Ingresar
+                </NavLink>  
                 </>
             )}
         </nav>
