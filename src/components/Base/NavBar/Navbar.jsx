@@ -16,6 +16,7 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
     const linkStyle = "w-full justify-center py-3 hover:bg-primary-hover responsive:px-5 responsive:py-0 responsive:w-fit";
     const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileView, setIsMobileView] = useState(false);
     const [isActivated, setIsActivated] = useState(true);
     const [isBurguerMenuOpen, setIsBurguerMenuOpen] = useState(false);
     const isLogged = useSelector(selectLogged);
@@ -50,7 +51,13 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
         }
     });
 
+    window.addEventListener('resize', () => {
+        screen.width < 750 ? setIsMobileView(true):setIsMobileView(false); 
+    });
+
     useEffect(() => {
+        screen.width < 750 && (setIsMobileView(true));
+
         axios
         .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/profile", {
         headers: {
@@ -85,7 +92,7 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
         </Modal>
     )}
     <motion.div 
-    className={"fixed flex flex-col w-full z-[60] top-0 left-0 h-full " + (isScrolled ? navBarWithLogoScrolled: navBarWithLogo)}
+    className={"fixed flex flex-col w-full z-[60] top-0 left-0 h-fit " + (isScrolled ? navBarWithLogoScrolled: navBarWithLogo)}
     key={isScrolled}
     variants={variants}
     initial="hidden"
@@ -101,8 +108,49 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
             </button>
         </div>
 
-
-        <nav className={navBarResponsive + (isScrolled ? " responsive:justify-end " : " responsive:justify-center pb-5 ") + "flex flex-col text-button w-full h-full bg-primary z-[60] transition-all duration-300 ease-in-out" + (!isBurguerMenuOpen ? ' translate-y-full' : ' ')}>
+        {!isMobileView && (
+            <nav className={navBarResponsive + (isScrolled ? " responsive:justify-end " : " responsive:justify-center pb-5 ") + "flex flex-col text-button w-full h-full bg-primary z-[60] transition-all duration-300 ease-in-out" + (!isBurguerMenuOpen ? ' translate-y-full' : ' ')}>
+                {backButton && (
+                    <NavLink to='/' image='/public/back_button.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
+                        Regresar
+                    </NavLink>
+                )}
+                {hasNavigation && (
+                    <>
+                    <NavLink linkStyle={linkStyle} to="/#home" image='/public/home.svg' action={toggleBurgerMenu}>
+                        Inicio
+                    </NavLink>
+                    <NavLink linkStyle={linkStyle} to="/#slider" image='/public/how_to.svg' action={toggleBurgerMenu}>
+                        ¿Como usar Bigmelo?
+                    </NavLink>
+                    </>
+                )}
+                {isLogged ? (
+                    <>
+                    {(isActivated && hasNavigation) && (
+                        <NavLink to='/profile' image='/public/chat.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
+                            Mis Mensajes
+                        </NavLink>  
+                    )}
+                    <NavLink to='/' image='/public/login.svg' linkStyle={linkStyle} action={logout}>
+                        Salir
+                    </NavLink>    
+                    </>
+                ):(
+                    <>
+                    <NavLink to='/#register' image='/public/register.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
+                        Registrate
+                    </NavLink>   
+                    <NavLink image='/public/login.svg' linkStyle={linkStyle} action={() => {setIsLoginFormOpen(true); toggleBurgerMenu();}}>
+                        Ingresar
+                    </NavLink>  
+                    </>
+                )}
+            </nav>
+        )}
+    </motion.div>
+    {isMobileView && (
+        <nav className={navBarResponsive + (isScrolled ? " responsive:justify-end " : " responsive:justify-center pb-5 ") + "flex flex-col text-button w-full h-full bg-primary z-[60] transition-all duration-300 ease-in-out fixed top-[66px] left-0 " + (!isBurguerMenuOpen ? ' translate-y-full' : ' ')}>
             {backButton && (
                 <NavLink to='/' image='/public/back_button.svg' linkStyle={linkStyle} action={toggleBurgerMenu}>
                     Regresar
@@ -140,7 +188,7 @@ export default function Navbar({backButton=false, hasNavigation, showModal}) {
                 </>
             )}
         </nav>
-    </motion.div>
+    )}
     </>
   )
 }

@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import Navbar from "./NavBar/Navbar";
 
-export default function Base({ children, bgColor = "bg-secondary", backButton=false, hasNavigation=false, showModal=true}) {
+export default function Base({ children, bgColor = "bg-secondary", backButton=false, hasNavigation=true, showModal=true}) {
   const style =
     bgColor +
     " min-h-fit w-full rounded-xl overflow-hidden max-w-7xl pt-0 mt-0 flex flex-col ";
