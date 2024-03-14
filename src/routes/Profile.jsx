@@ -48,7 +48,7 @@ export default function Profile() {
 
   return (
     <>
-      <Base backButton={true}>
+      <Base>
         <motion.div 
         className="flex flex-col items-center justify-center text-center space-y-10 m-28 relative grow responsive:min-h-[50vh] h-fit border-button border-y-2 shadow-xl shadow-indigo-900/60 responsive:py-3 py-8"
         variants={variants}

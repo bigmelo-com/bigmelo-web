@@ -12,7 +12,7 @@ export default function Root() {
 
   return (
     <>
-      <Base hasNavigation={true}>
+      <Base>
         <Home />
         <Slider />
         <RegisterForm show={!logged} />

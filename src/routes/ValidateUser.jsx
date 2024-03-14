@@ -25,7 +25,7 @@ export default function ValidateUser() {
   },[]);
 
   return (
-    <Base backButton={true} showModal={false}>
+    <Base showModal={false}>
       <ValidationForm />
     </Base>
   );

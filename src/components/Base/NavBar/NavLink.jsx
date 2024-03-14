@@ -8,6 +8,7 @@ export default function NavLink({children, to="", image, linkStyle = "", action=
         onClick={
             action
         }
+        smooth
         >
             {image && (
                 <img className="mr-2 w-fit h-fit" src={image} alt="link_image" />
