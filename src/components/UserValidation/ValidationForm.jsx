@@ -16,7 +16,7 @@ export default function ValidationForm() {
     event.preventDefault();
     setWaitingResponse(true);
     const data = {
-        validation_code: code
+        validation_code: code.toString()
     };
 
     axios
@@ -28,6 +28,7 @@ export default function ValidationForm() {
       .then((res) => {
         dispatch(changeToken({ access_token: res.data.access_token, logged: true }));
         setMessage(["¡Cuenta Activada, ya puedes ingresar a 'Mis Mensajes'!", "bg-success"]);
+        location.reload();
         window.location.href = '/profile';
       })
       .catch((err) => {
@@ -90,7 +91,7 @@ export default function ValidationForm() {
                 <div className="flex flex-col items-center space-y-3">
                     <input
                         className="responsive:min-w-[600px] min-w-[300px] text-white text-center bg-primary border border-border rounded-lg p-3"
-                        type="text"
+                        type="number"
                         minLength={6}
                         maxLength={6}
                         onChange={handleChange}

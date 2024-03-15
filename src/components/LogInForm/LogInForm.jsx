@@ -4,13 +4,17 @@ import { useDispatch } from "react-redux";
 import { changeToken } from "../../redux/tokenSlice";
 import { useNavigate } from "react-router-dom";
 
-export default function LogInForms() {
+export default function LogInForm({toggleLoginForm}) {
   const inputClass =
     "responsive:w-[504px] w-[250px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
   const [post, setPost] = useState({});
   const [response, setResponse] = useState(['','']);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const closeLogInForm = () => {
+    toggleLoginForm(false);
+  };
 
   const handleInput = (event) => {
       setPost({ ...post, [event.target.name]: event.target.value });
@@ -33,7 +37,15 @@ export default function LogInForms() {
   }
 
   return (
-    <div className="flex justify-center fixed inset-0 bg-black z-[70] backdrop-blur-sm bg-opacity-30">
+    <>
+        <button onClick={closeLogInForm}>
+        <img
+            className="fixed w-6 top-10 right-10 z-[71]"
+            src="/public/close_button.svg"
+            alt="close-button"
+        />
+        </button>
+        <div className="flex justify-center fixed inset-0 bg-black z-[70] backdrop-blur-sm bg-opacity-50 overscroll-y-none">
           <form
             className="flex flex-col items-center mt-20"
             onSubmit={handleSubmit}
@@ -66,5 +78,6 @@ export default function LogInForms() {
             </div>
           </form>
         </div>
+    </>
   )
 }

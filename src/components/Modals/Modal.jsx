@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import NavLink from "./NavBar/NavLink";
+import NavLink from "../NavBar/NavLink";
 
 export default function Modal({children, bg_color}) {
     const variants = {
