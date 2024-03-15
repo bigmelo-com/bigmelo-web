@@ -1,4 +1,4 @@
-import NavLink from '../Base/NavBar/NavLink';
+import NavLink from '../NavBar/NavLink';
 
 export default function Header() {
   return (
