@@ -22,7 +22,6 @@ export default function NavbarController({
   const mobileNavBarStyle = "fixed bg-primary z-[60] h-full w-full left-0 text-white top-[66px] transition-transform duration-300 ease-in-out";
   const mobileNavBarStyleClose = " translate-y-full";
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
-  const urlGoToParam = window.location.href.split("#")[1];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [isActivated, setIsActivated] = useState(true);
@@ -65,7 +64,6 @@ export default function NavbarController({
 
   useEffect(() => {
     screen.width < 750 && setIsMobileView(true);
-    urlGoToParam && (window.location.href = "#" + urlGoToParam);
     axios
       .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/profile", {
         headers: {
