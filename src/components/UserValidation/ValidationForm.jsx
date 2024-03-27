@@ -6,7 +6,7 @@ import { Link } from "react-scroll";
 
 export default function ValidationForm() {
   const [waitingResponse, setWaitingResponse] = useState(false);
-  const [message, setMessage] = useState(["", ""]);
+  const [message, setMessage] = useState(["A tu Whatsapp llegó un mensaje con el codigo de validación, porfavor ingresalo", "bg-success"]);
   const [code, setCode] = useState("");
   const [isDisableGetNewCode, setIsDisableGetNewCode] = useState(false);
   const token = useSelector(selectToken);
@@ -47,7 +47,7 @@ export default function ValidationForm() {
         }
       })
       .then(() => {
-        setMessage(["Un nuevo código fue enviado a tu telefono", "bg-success"]);
+        setMessage(["Un nuevo código fue enviado a tu WhatsApp", "bg-success"]);
       })
       .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
@@ -84,7 +84,7 @@ export default function ValidationForm() {
                     ¡Valida tú cuenta para poder usar Bigmelo!
                     </h1>
                     <h2 className="text-paragraph responsive:text-xl text-base text-center">
-                    Recibiste un codigo de 6 dígitos en tu telefono, ingresalo para
+                    Recibiste un mensaje en WhatsApp con un codigo de 6 dígitos, ingresalo para
                     activar tu cuenta
                     </h2>
                 </div>
@@ -109,7 +109,7 @@ export default function ValidationForm() {
                 <button className="bg-button p-3 rounded-md" type="submit">
                     Validar Código
                 </button>
-            <div className={message[1] + " flex text-black p-4 rounded-md italic w-1/2 justify-center"}>
+            <div className={message[1] + " flex text-black p-4 rounded-md italic w-1/2 justify-center text-center"}>
             {message[0]}
             </div>
             </form>
