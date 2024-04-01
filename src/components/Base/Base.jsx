@@ -9,7 +9,6 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
 
   return (
     <>
-    <ScrollToAnchor />
       <div className="bg-primary min-h-screen responsive:px-11 responsive:pt-0 responsive:pb-11 flex flex-col place-items-center relative">
         <div className="flex relative w-full max-w-7xl responsive:p-0 px-6 responsive:justify-center">
           <NavbarController backButton={backButton} hasNavigation={hasNavigation} showModal={showModal} />
@@ -19,6 +18,7 @@ export default function Base({ children, bgColor = "bg-secondary", backButton=fa
           <Footer />
         </div>
       </div>
+    <ScrollToAnchor />
     </>
   );
 }

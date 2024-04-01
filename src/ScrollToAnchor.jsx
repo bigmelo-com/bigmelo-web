@@ -1,22 +1,20 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function ScrollToAnchor() {
   const location = useLocation();
   const lastHash = useRef('');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.hash) {
       lastHash.current = location.hash.slice(1);
     }
 
     if (lastHash.current && document.getElementById(lastHash.current)) {
-      setTimeout(() => {
-        document
-          .getElementById(lastHash.current)
-          ?.scrollIntoView({ behavior: 'instant', block: 'start' });
-        lastHash.current = '';
-      }, 1000);
+      document
+        .getElementById(lastHash.current)
+        ?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      lastHash.current = '';
     }
   }, [location]);
 
