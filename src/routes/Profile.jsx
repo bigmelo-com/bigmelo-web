@@ -3,8 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectToken } from "../redux/tokenSlice";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Plans from "../components/Plans/Plans";
 
 export default function Profile() {
   const subTitleClass = "text-title text-2xl";
@@ -13,6 +14,7 @@ export default function Profile() {
   const [userData, setUserData] = useState(false);
   const token = useSelector(selectToken);
   const navigate = useNavigate();
+  const availableEmails = import.meta.env.VITE_PAYMENT_TEST_EMAILS;
   const variants = {
     hidden: {
       y: "-10%",
@@ -49,8 +51,11 @@ export default function Profile() {
   return (
     <>
       <Base>
+        {userData["remaining_messages"] === 0 && availableEmails.includes(userData["email"]) ? 
+        <Plans />
+        :
         <motion.div 
-        className="flex flex-col items-center justify-center text-center space-y-10 m-28 relative grow responsive:min-h-[50vh] h-fit border-button border-y-2 shadow-xl shadow-indigo-900/60 responsive:py-3 py-8"
+        className="flex flex-col items-center justify-center text-center space-y-10 my-28 mx-5 responsive:m-28 relative responsive:min-h-[50vh] h-fit border-button border-y-2 shadow-xl shadow-indigo-900/60 responsive:py-3 py-8"
         variants={variants}
         initial="hidden"
         animate="visible"
@@ -94,6 +99,8 @@ export default function Profile() {
             </>
           )}
         </motion.div>
+        
+        }
       </Base>
     </>
   );

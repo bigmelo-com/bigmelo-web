@@ -15,6 +15,7 @@ export default {
         'title': '#34B7F1',
         'paragraph' : '#5B718F',
         'button' : '#34D3A3',
+        'button-hover' : '#45E4B4',
         'phoneBody' : '#D9D9D9',
         'userMessage':'#00a884',
         'botMessage':'#343f46',
