@@ -14,6 +14,7 @@ export default function Profile() {
   const [userData, setUserData] = useState(false);
   const token = useSelector(selectToken);
   const navigate = useNavigate();
+  const availableIds = import.meta.env.VITE_PAYMENT_TEST_IDS;
   const variants = {
     hidden: {
       y: "-10%",
@@ -50,7 +51,7 @@ export default function Profile() {
   return (
     <>
       <Base>
-        {userData["remaining_messages"] === 0 ? 
+        {userData["remaining_messages"] === 0 && availableIds.includes(userData["email"]) ? 
         <Plans />
         :
         <motion.div 
