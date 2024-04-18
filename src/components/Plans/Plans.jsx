@@ -64,7 +64,7 @@ export default function Plans() {
                             plansData.map(plan => {
                                 return(
                                     <div key={plan.id}>
-                                        <PlanCard name={plan.name} description={plan.description} price={plan.price} period={plan.period}/>
+                                        <PlanCard planId={plan.id} name={plan.name} description={plan.description} price={plan.price} period={plan.period} waitingResponseState={setWaitingResponse} />
                                     </div>
                                 )
                             })
