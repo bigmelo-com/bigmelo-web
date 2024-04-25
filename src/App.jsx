@@ -5,6 +5,7 @@ import About from "./routes/About";
 import Terms from "./routes/Terms";
 import Profile from "./routes/Profile";
 import ValidateUser from "./routes/ValidateUser"
+import Payment from "./routes/Payment";
 
 export function App() {
     const router = createBrowserRouter([
@@ -31,6 +32,16 @@ export function App() {
         {
           path: "validate",
           element: <ValidateUser />,
+          errorElement: <ErrorPage/>
+        },
+        {
+          path: "payment-success",
+          element: <Payment success={true} />,
+          errorElement: <ErrorPage/>
+        },
+        {
+          path: "payment-failed",
+          element: <Payment success={false} />,
           errorElement: <ErrorPage/>
         },
       ]);
