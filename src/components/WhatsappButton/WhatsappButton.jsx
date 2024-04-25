@@ -14,7 +14,7 @@ export default function WhatsappButton() {
 
   return (
     <a
-      href="https://api.whatsapp.com/send?phone=13217328611&text=Hola!"
+      href={import.meta.env.VITE_WHATSAPP_LINK}
       target="_blank"
     >
       <motion.div
