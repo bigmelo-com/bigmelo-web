@@ -9,6 +9,7 @@ export default function LogInForm({toggleLoginForm}) {
     "responsive:w-[504px] w-[250px] mt-8 p-3 border border-border text-white bg-primary rounded-lg placeholder-white";
   const [post, setPost] = useState({});
   const [response, setResponse] = useState(['','']);
+  const [isWaitingResponse, setIsWaitingResponse] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ export default function LogInForm({toggleLoginForm}) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsWaitingResponse(true)
 
     axios
     .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/get-token", post)
@@ -33,7 +35,8 @@ export default function LogInForm({toggleLoginForm}) {
     })
     .catch((err) => {
       setResponse([err.response.data.message, "bg-error"]);
-    });
+    })
+    .finally(() => setIsWaitingResponse(false));
   }
 
   return (
@@ -46,10 +49,17 @@ export default function LogInForm({toggleLoginForm}) {
         />
         </button>
         <div className="flex justify-center fixed inset-0 bg-black z-[70] backdrop-blur-sm bg-opacity-50 overscroll-y-none">
+          {isWaitingResponse && (
+            <div className="absolute bg-opacity-60 w-full h-full bg-secondary z-[5] flex justify-center items-center">
+              <div className="h-12 w-12 border-4 border-l-white border-r-white border-b-white border-t-button animate-spin ease-linear rounded-full">
+                
+              </div>
+            </div>
+          )}
           <form
             className="flex flex-col items-center mt-20"
             onSubmit={handleSubmit}
-          >
+            >
             <h2 className="text-title text-xl mb-7">Ingresa a bigmelo</h2>
             <p className="text-paragraph">
               Ingresa los datos que registraste en bigmelo

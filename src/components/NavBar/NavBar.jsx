@@ -41,9 +41,14 @@ export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>
                 {isLogged ? (
                     <>
                     {(isActivated && hasNavigation) && (
+                        <>
                         <NavLink to='/profile' image='/public/chat.svg' linkStyle={linkStyle} onClick={closeBurgerMenu}>
                             Mis Mensajes
                         </NavLink>  
+                        <NavLink to='/support' image='/public/support.svg' linkStyle={linkStyle} onClick={closeBurgerMenu}>
+                            Contactanos
+                        </NavLink>  
+                        </>
                     )}
                     <NavLink to='/' image='/public/login.svg' linkStyle={linkStyle} onClick={logout}>
                         Salir
