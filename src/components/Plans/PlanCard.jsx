@@ -3,10 +3,10 @@ import { selectToken } from "../../redux/tokenSlice";
 import axios from "axios";
 
 export default function PlanCard({ planId, name, description, price, period, waitingResponseState }) {
-    const years = period[12] === '1' && "Year";
-    const months = period[8] === '1' && "Month";
-    const weeks = period[4] === '1' && "Week";
-    const days = period[0] === '1' && "Day";
+    const years = period[12] === '1' && "Año";
+    const months = period[8] === '1' && "Mes";
+    const weeks = period[4] === '1' && "Semana";
+    const days = period[0] === '1' && "Día";
     const duration = years ? years : months ? months : weeks ? weeks : days;
     const token = useSelector(selectToken);
 
