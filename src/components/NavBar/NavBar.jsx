@@ -6,7 +6,7 @@ export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>
     const linkStyle = "w-full justify-center py-3 hover:bg-primary-hover responsive:px-5 responsive:py-0 responsive:w-fit"; 
     const dispatch = useDispatch(); 
 
-    const logout = async () => {
+    const logout = () => {
         dispatch(changeToken({ access_token: "", logged: false }));
         toggleBurgerMenu();
     };
