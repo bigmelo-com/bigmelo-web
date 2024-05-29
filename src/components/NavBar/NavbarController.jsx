@@ -1,4 +1,4 @@
-import { selectLogged, selectToken } from "../../redux/tokenSlice";
+import { selectLogged } from "../../redux/tokenSlice";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
@@ -6,7 +6,7 @@ import LogInForms from "../LogInForm/LogInForm";
 import NavBar from "./NavBar";
 import Modal from "../Modals/Modal";
 import Logo from "./Logo";
-import axios from "axios";
+import { profile } from "../../api/user";
 
 export default function NavbarController({
   backButton = false,
@@ -27,7 +27,6 @@ export default function NavbarController({
   const [isActivated, setIsActivated] = useState(true);
   const [isBurguerMenuOpen, setIsBurguerMenuOpen] = useState(false);
   const isLogged = useSelector(selectLogged);
-  const token = useSelector(selectToken);
 
   const variants = {
     hidden: {
@@ -64,18 +63,15 @@ export default function NavbarController({
 
   useEffect(() => {
     screen.width < 750 && setIsMobileView(true);
-    axios
-      .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((res) => {
-        setIsActivated(true);
-      })
-      .catch((err) => {
-        setIsActivated(false);
-      });
+
+    profile()
+    .then((res) => {
+      setIsActivated(true);
+    })
+    .catch((err) => {
+      setIsActivated(false);
+      console.log(err)
+    });
   });
 
   return (
@@ -128,26 +124,26 @@ export default function NavbarController({
     </div>
 
     {!isMobileView && (
-        <NavBar
-        backButton={backButton}
-        hasNavigation={hasNavigation}
-        isLogged={isLogged}
-        openLogInForm={setLoginFormState}
-        style={isScrolled ? NavBarScrolledStyle : NavBarStyle}
-        isActivated={isActivated}
-        />
+      <NavBar
+      backButton={backButton}
+      hasNavigation={hasNavigation}
+      isLogged={isLogged}
+      openLogInForm={setLoginFormState}
+      style={isScrolled ? NavBarScrolledStyle : NavBarStyle}
+      isActivated={isActivated}
+      />
     )}
     </motion.div>
     {isMobileView && (
-    <NavBar
-        backButton={backButton}
-        hasNavigation={hasNavigation}
-        toggleBurgerMenu={toggleBurgerMenu}
-        openLogInForm={setLoginFormState}
-        isLogged={isLogged}
-        style={mobileNavBarStyle + (isBurguerMenuOpen ? '':mobileNavBarStyleClose)}
-        isActivated={isActivated}
-    />
+      <NavBar
+          backButton={backButton}
+          hasNavigation={hasNavigation}
+          toggleBurgerMenu={toggleBurgerMenu}
+          openLogInForm={setLoginFormState}
+          isLogged={isLogged}
+          style={mobileNavBarStyle + (isBurguerMenuOpen ? '':mobileNavBarStyleClose)}
+          isActivated={isActivated}
+      />
     )}
     </>
   );

@@ -1,12 +1,9 @@
-import axios from "axios";
-import { useEffect } from "react"
-import { useSelector } from "react-redux";
-import { selectToken } from "../../redux/tokenSlice";
+import { useEffect } from "react";
+import { sendPaymentInfo } from "../../api/plan";
 
 export default function PaymentSuccess() {
     const urlSearchString = window.location.search;
     const params = new URLSearchParams(urlSearchString);
-    const token = useSelector(selectToken);
     
     useEffect(() => {
         const post = {
@@ -15,12 +12,7 @@ export default function PaymentSuccess() {
             status : params.get('status')
         };
 
-        axios
-        .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/plan/payment", post, {
-            headers: {
-            Authorization: `Bearer ${token}`
-            }
-        })
+        sendPaymentInfo(post);
     }, []);
 
   return (

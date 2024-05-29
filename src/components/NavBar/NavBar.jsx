@@ -50,7 +50,7 @@ export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>
                         </NavLink>  
                         </>
                     )}
-                    <NavLink to='/' image='/public/login.svg' linkStyle={linkStyle} onClick={logout}>
+                    <NavLink image='/public/login.svg' linkStyle={linkStyle} onClick={logout}>
                         Salir
                     </NavLink>    
                     </>
