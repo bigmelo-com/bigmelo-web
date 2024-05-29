@@ -1,4 +1,4 @@
-export default function NavLink({children, to="", image, linkStyle = "", onClick=() => {}}) {
+export default function NavLink({children, to=false, image, linkStyle = "", onClick=() => {}}) {
     const onClickFunction = () => {
         onClick();
         to && (window.location.href = to);

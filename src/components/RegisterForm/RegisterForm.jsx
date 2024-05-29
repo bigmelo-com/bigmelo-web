@@ -5,8 +5,8 @@ import 'react-international-phone/style.css';
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './PhoneInputStyles.css';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { signUp } from "../../api/auth";
 
 export default function RegisterForm({ show = true }) {
   const inputClass =
@@ -19,7 +19,7 @@ export default function RegisterForm({ show = true }) {
   const [waitingResponse, setWaitingResponse] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const handleInput = (event) => {
     setPost({ ...post, [event.target.name]: event.target.value });
   };
@@ -36,8 +36,7 @@ export default function RegisterForm({ show = true }) {
       full_phone_number: phone
     }
 
-    axios
-      .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/signup", data)
+    signUp(data)
       .then((res) => {
         dispatch(changeToken({ access_token: res.data.access_token, logged: true }));
         setMessage(["¡El usuario fue registrado con exito!", "bg-success"]);
@@ -46,9 +45,9 @@ export default function RegisterForm({ show = true }) {
       .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
       }).finally(() => setWaitingResponse(false));
-    };
- 
-    return (
+  };
+
+  return (
     <div className={componentClass} id="register">
       <div id="register"></div>
       <div className="flex flex-col text-center responsive:max-w-[504px]">

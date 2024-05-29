@@ -10,12 +10,13 @@ export const tokenSlice = createSlice({
     initialState,
     reducers: {
         changeToken: (state, action) => {
-
             const {access_token, logged} = action.payload;
 
-            state.access_token = access_token;
-            state.logged = logged;
-
+            return {
+                ...state,
+                access_token : access_token,
+                logged : logged,
+            };
         }
     }
 });

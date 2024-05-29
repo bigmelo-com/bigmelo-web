@@ -6,7 +6,7 @@ export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>
     const linkStyle = "w-full justify-center py-3 hover:bg-primary-hover responsive:px-5 responsive:py-0 responsive:w-fit"; 
     const dispatch = useDispatch(); 
 
-    const logout = () => {
+    const logout = async () => {
         dispatch(changeToken({ access_token: "", logged: false }));
         toggleBurgerMenu();
     };
@@ -50,7 +50,7 @@ export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>
                         </NavLink>  
                         </>
                     )}
-                    <NavLink to='/' image='/public/login.svg' linkStyle={linkStyle} onClick={logout}>
+                    <NavLink image='/public/login.svg' linkStyle={linkStyle} onClick={logout}>
                         Salir
                     </NavLink>    
                     </>

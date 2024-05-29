@@ -1,15 +1,14 @@
-import { changeToken, selectToken } from "../../redux/tokenSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { changeToken } from "../../redux/tokenSlice";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-scroll";
+import { getValidationCode, validateUser } from "../../api/user";
 
 export default function ValidationForm() {
   const [waitingResponse, setWaitingResponse] = useState(false);
   const [message, setMessage] = useState(["A tu Whatsapp llegó un mensaje con el codigo de validación, porfavor ingresalo", "bg-success"]);
   const [code, setCode] = useState("");
   const [isDisableGetNewCode, setIsDisableGetNewCode] = useState(false);
-  const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
@@ -19,39 +18,31 @@ export default function ValidationForm() {
         validation_code: code.toString()
     };
 
-    axios
-      .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/user/validate", data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then((res) => {
-        dispatch(changeToken({ access_token: res.data.access_token, logged: true }));
-        setMessage(["¡Cuenta Activada, ya puedes ingresar a 'Mis Mensajes'!", "bg-success"]);
-        location.reload();
-        window.location.href = '/profile';
-      })
-      .catch((err) => {
-        setMessage([err.response.data.message, "bg-error"]);
-      }).finally(() => setWaitingResponse(false));
+    validateUser(data)
+    .then((res) => {
+      dispatch(changeToken({ access_token: res.data.access_token, logged: true }));
+      setMessage(["¡Cuenta Activada, ya puedes ingresar a 'Mis Mensajes'!", "bg-success"]);
+      location.reload();
+      window.location.href = '/profile';
+    })
+    .catch((err) => {
+      setMessage([err.response.data.message, "bg-error"]);
+    })
+    .finally(() => setWaitingResponse(false));
   };
 
   const handleGetNewCode = () => {
     setWaitingResponse(true);
 
     if(!isDisableGetNewCode){
-      axios
-      .patch(import.meta.env.VITE_LOCAL_API_URL + "/v1/user/validation-code", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      getValidationCode()
       .then(() => {
         setMessage(["Un nuevo código fue enviado a tu WhatsApp", "bg-success"]);
       })
       .catch((err) => {
         setMessage([err.response.data.message, "bg-error"]);
-      }).finally(() => setWaitingResponse(false));
+      })
+      .finally(() => setWaitingResponse(false));
 
       setIsDisableGetNewCode(true);
       setTimeout(() => setIsDisableGetNewCode(false), 60000);
@@ -59,7 +50,6 @@ export default function ValidationForm() {
       setMessage(["Debes esperar 1 minuto para volver a pedir un código.", "bg-error"]);
       setWaitingResponse(false)
     }
-
   };
 
   const handleChange = event => {

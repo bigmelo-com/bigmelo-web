@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
-import { selectToken } from "../../redux/tokenSlice";
-import axios from "axios";
+import { getPaymentLink } from "../../api/plan";
 
 export default function PlanCard({ planId, name, description, price, period, waitingResponseState }) {
     const years = period[12] === '1' && "Año";
@@ -8,20 +6,14 @@ export default function PlanCard({ planId, name, description, price, period, wai
     const weeks = period[4] === '1' && "Semana";
     const days = period[0] === '1' && "Día";
     const duration = years ? years : months ? months : weeks ? weeks : days;
-    const token = useSelector(selectToken);
 
     const goToPaymentLink = async () => {
         waitingResponseState(true);
-        await axios
-            .get(import.meta.env.VITE_LOCAL_API_URL + `/v1/plan/purchase/${planId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then(res => {
-                window.location.href = res.data.payment_link;
-            }).catch(err => {
-                console.log(err)
-            });
+
+        getPaymentLink(planId)
+        .then(res => {
+            window.location.href = res.data.payment_link;
+        })
     };
 
     return (

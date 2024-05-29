@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion} from "framer-motion";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { selectToken } from "../../redux/tokenSlice";
 import PlanCard from "./PlanCard";
+import { getPlanData } from "../../api/plan";
 
 export default function Plans() {
-    const subTitleClass = "text-title text-2xl";
-    const textClass = "text-white text-4xl";
     const [waitingResponse, setWaitingResponse] = useState(false);
     const [plansData, setPlansData] = useState(false);
-    const token = useSelector(selectToken);
 
     const variants = {
         hidden: {
@@ -29,12 +24,8 @@ export default function Plans() {
 
     useEffect(() => {
         setWaitingResponse(true);
-        axios
-        .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/plan/purchase", {
-            headers: {
-            Authorization: `Bearer ${token}`
-            }
-        })
+        
+        getPlanData()
         .then((res) => {
             setPlansData(res.data.data);
         })

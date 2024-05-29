@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeToken } from "../../redux/tokenSlice";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../api/auth";
 
 export default function LogInForm({toggleLoginForm}) {
   const inputClass =
@@ -25,8 +25,7 @@ export default function LogInForm({toggleLoginForm}) {
     event.preventDefault();
     setIsWaitingResponse(true)
 
-    axios
-    .post(import.meta.env.VITE_LOCAL_API_URL + "/v1/auth/get-token", post)
+    login(post)
     .then((res) => {
         dispatch(
         changeToken({ access_token: res.data.access_token, logged: true })

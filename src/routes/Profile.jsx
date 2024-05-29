@@ -1,18 +1,15 @@
 import Base from "../components/Base/Base";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectToken } from "../redux/tokenSlice";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Plans from "../components/Plans/Plans";
+import { profile } from "../api/user";
 
 export default function Profile() {
   const subTitleClass = "text-title text-2xl";
   const textClass = "text-white text-4xl";
   const [waitingResponse, setWaitingResponse] = useState(false);
   const [userData, setUserData] = useState(false);
-  const token = useSelector(selectToken);
   const navigate = useNavigate();
   const availableEmails = import.meta.env.VITE_PAYMENT_TEST_EMAILS;
   const variants = {
@@ -33,12 +30,7 @@ export default function Profile() {
   useEffect(() => {
     setWaitingResponse(true);
 
-    axios
-      .get(import.meta.env.VITE_LOCAL_API_URL + "/v1/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+    profile()
       .then((res) => {
         setUserData(res.data.data);
       })
