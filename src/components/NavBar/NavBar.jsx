@@ -2,7 +2,7 @@ import { changeToken } from "../../redux/tokenSlice";
 import { useDispatch } from "react-redux";
 import NavLink from "./NavLink";
 
-export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>{}, openLogInForm, isLogged, isActivated, style}) {
+export default function NavBar({hasNavigation, toggleBurgerMenu=()=>{}, openLogInForm, isLogged, isActivated, style}) {
     const linkStyle = "w-full justify-center py-3 hover:bg-primary-hover responsive:px-5 responsive:py-0 responsive:w-fit"; 
     const dispatch = useDispatch(); 
 
@@ -23,11 +23,6 @@ export default function NavBar({backButton, hasNavigation, toggleBurgerMenu=()=>
     return (
         <>
             <nav className={style}>
-                {backButton && (
-                    <NavLink to='/' image='/public/back_button.svg' linkStyle={linkStyle} onClick={closeBurgerMenu}>
-                        Regresar
-                    </NavLink>
-                )}
                 {hasNavigation && (
                     <>
                     <NavLink linkStyle={linkStyle} to="/#home" image='/public/home.svg' onClick={closeBurgerMenu}>

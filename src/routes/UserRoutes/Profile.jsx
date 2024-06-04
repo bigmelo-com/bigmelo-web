@@ -1,16 +1,14 @@
-import Base from "../components/Base/Base";
+import Base from "/src/components/Base/Base";
+import Plans from "/src/components/Plans/Plans";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import Plans from "../components/Plans/Plans";
-import { profile } from "../api/user";
+import { profile } from "../../api/user";
 
 export default function Profile() {
   const subTitleClass = "text-title text-2xl";
   const textClass = "text-white text-4xl";
   const [waitingResponse, setWaitingResponse] = useState(false);
   const [userData, setUserData] = useState(false);
-  const navigate = useNavigate();
   const availableEmails = import.meta.env.VITE_PAYMENT_TEST_EMAILS;
   const variants = {
     hidden: {
@@ -33,9 +31,6 @@ export default function Profile() {
     profile()
       .then((res) => {
         setUserData(res.data.data);
-      })
-      .catch((err) => {
-        navigate('/');
       })
       .finally(() => setWaitingResponse(false));
   }, []);

@@ -1,5 +1,5 @@
-import Base from "../components/Base/Base";
-import ContactForm from "../components/Support/ContactForm";
+import Base from "/src/components/Base/Base";
+import ContactForm from "/src/components/Support/ContactForm";
 
 export default function Support() {
   return (

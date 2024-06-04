@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { changeToken } from "../../redux/tokenSlice";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/auth";
+import Loader from '/src/components/Loading/Loader';
 
 export default function LogInForm({toggleLoginForm}) {
   const inputClass =
@@ -49,11 +50,7 @@ export default function LogInForm({toggleLoginForm}) {
         </button>
         <div className="flex justify-center fixed inset-0 bg-black z-[70] backdrop-blur-sm bg-opacity-50 overscroll-y-none">
           {isWaitingResponse && (
-            <div className="absolute bg-opacity-60 w-full h-full bg-secondary z-[5] flex justify-center items-center">
-              <div className="h-12 w-12 border-4 border-l-white border-r-white border-b-white border-t-button animate-spin ease-linear rounded-full">
-                
-              </div>
-            </div>
+            <Loader />
           )}
           <form
             className="flex flex-col items-center mt-20"
