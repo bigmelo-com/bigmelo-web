@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     access_token: "",
-    logged: false
+    logged: false,
+    isActive: false
 };
 
 export const tokenSlice = createSlice({

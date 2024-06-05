@@ -1,4 +1,4 @@
-import Base from '../components/Base/Base';
+import Base from "/src/components/Base/Base";
 
 export default function Terms() {
     return (

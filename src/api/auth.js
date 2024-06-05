@@ -9,7 +9,7 @@ export const signUp =  async (data) => {
 };
 
 export const isLogged = async () => {
-    return authenticatedRequest.get("/v1/profile");
+    return authenticatedRequest.get("/v1/test");
 };
         
 

@@ -29,9 +29,6 @@ export default function Plans() {
         .then((res) => {
             setPlansData(res.data.data);
         })
-        .catch((err) => {
-            navigate('/');
-        })
         .finally(() => setWaitingResponse(false));
     }, []);
     return (
