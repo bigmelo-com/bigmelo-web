@@ -4,6 +4,7 @@ import { changeToken } from "../../redux/tokenSlice";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/auth";
 import Loader from '/src/components/Loading/Loader';
+import RecoveryRequestForm from "../UserValidation/RecoveryRequestForm";
 
 export default function LogInForm({toggleLoginForm}) {
   const inputClass =
@@ -11,6 +12,7 @@ export default function LogInForm({toggleLoginForm}) {
   const [post, setPost] = useState({});
   const [response, setResponse] = useState(['','']);
   const [isWaitingResponse, setIsWaitingResponse] = useState(false);
+  const [isRecoveryFormOpen, setIsRecoveryFormOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,41 +50,48 @@ export default function LogInForm({toggleLoginForm}) {
             alt="close-button"
         />
         </button>
-        <div className="flex justify-center fixed inset-0 bg-black z-[70] backdrop-blur-sm bg-opacity-50 overscroll-y-none">
+        <div className="flex flex-col fixed inset-0 bg-black z-[70] backdrop-blur-sm bg-opacity-50 overscroll-y-none">
           {isWaitingResponse && (
             <Loader />
           )}
-          <form
-            className="flex flex-col items-center mt-20"
-            onSubmit={handleSubmit}
-            >
-            <h2 className="text-title text-xl mb-7">Ingresa a bigmelo</h2>
-            <p className="text-paragraph">
-              Ingresa los datos que registraste en bigmelo
-            </p>
-            <input
-              name="email"
-              type="text"
-              className={inputClass}
-              placeholder="Correo electrónico"
-              onChange={handleInput}
-              required
-            />
-            <input
-              name="password"
-              type="password"
-              className={inputClass}
-              placeholder="Contraseña"
-              onChange={handleInput}
-              required
-            />
-            <button className="responsive:w-[504px] w-[250px] my-6 p-3 bg-button rounded-lg">
-              Ingresar
-            </button>
-            <div className={response[1] + " text-black p-4 rounded-md italic"}>
-              {response[0]}
-            </div>
-          </form>
+          {isRecoveryFormOpen ? (
+            <RecoveryRequestForm setIsWaitingResponse={setIsWaitingResponse} setIsOpen={setIsRecoveryFormOpen}/>
+          ) : (
+            <form
+              className="flex flex-col items-center mt-20"
+              onSubmit={handleSubmit}
+              >
+              <h2 className="text-title text-xl mb-7">Ingresa a bigmelo</h2>
+              <p className="text-paragraph">
+                Ingresa los datos que registraste en bigmelo
+              </p>
+              <input
+                name="email"
+                type="text"
+                className={inputClass}
+                placeholder="Correo electrónico"
+                onChange={handleInput}
+                required
+              />
+              <input
+                name="password"
+                type="password"
+                className={inputClass}
+                placeholder="Contraseña"
+                onChange={handleInput}
+                required
+              />
+              <button className="responsive:w-[504px] w-[250px] my-6 p-3 bg-button rounded-lg">
+                Ingresar
+              </button>
+              <button type="button" onClick={() => setIsRecoveryFormOpen(true)} className="underline text-title bg-transparent" href="/recovery-form">
+                ¿Olvidaste tu contraseña?
+              </button>
+              <div className={response[1] + " text-black p-4 rounded-md italic"}>
+                {response[0]}
+              </div>
+            </form>
+          )}
         </div>
     </>
   )

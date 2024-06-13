@@ -1,4 +1,4 @@
-import { authenticatedRequest } from "./requests";
+import { authenticatedRequest, unAuthenticatedRequest } from "./requests";
 
 export const sendSupportRequest = async (data) => {
   return authenticatedRequest.post("/v1/contact", data);
@@ -14,4 +14,8 @@ export const validateUser = async (data) => {
 
 export const getValidationCode = async () => {
   return authenticatedRequest.patch("/v1/user/validation-code", {});
+};
+
+export const sendRecoveryRequest = async () => {
+  return unAuthenticatedRequest.post("/v1/auth/password-recovery", {});
 };
