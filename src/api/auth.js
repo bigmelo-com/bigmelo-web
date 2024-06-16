@@ -11,6 +11,13 @@ export const signUp =  async (data) => {
 export const isLogged = async () => {
     return authenticatedRequest.get("/v1/test");
 };
-        
 
+export const sendRecoveryRequest = async (email) => {
+    return unAuthenticatedRequest.post("/v1/auth/password-recovery", {
+        email: email
+    });
+};
 
+export const resetPassword = async (data) => {
+    return authenticatedRequest.post("/v1/auth/reset-password", data);
+};

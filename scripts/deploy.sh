@@ -2,7 +2,7 @@
 cd /home/ubuntu/bigmelo-web
 git stash
 git stash drop
-git reset --hard origin/main
+sudo git reset --hard origin/main
 git pull origin --rebase
 npm i
 npm audit fix

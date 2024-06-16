@@ -15,7 +15,3 @@ export const validateUser = async (data) => {
 export const getValidationCode = async () => {
   return authenticatedRequest.patch("/v1/user/validation-code", {});
 };
-
-export const sendRecoveryRequest = async () => {
-  return unAuthenticatedRequest.post("/v1/auth/password-recovery", {});
-};
