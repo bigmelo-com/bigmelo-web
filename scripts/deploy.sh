@@ -1,9 +1,8 @@
 #!/bin/bash
 cd /home/ubuntu/bigmelo-web
-git stash
-git stash drop
+git fetch origin
 sudo git reset --hard origin/main
-git pull origin --rebase
+git pull --rebase origin main
 npm i
 npm audit fix
 sudo npm run build
