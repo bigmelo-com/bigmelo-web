@@ -13,11 +13,19 @@ import { useSelector } from "react-redux";
 import { selectLogged } from "./redux/tokenSlice";
 import { useState } from "react";
 import { profile } from "./api/user";
+import ResetPassword from "./routes/UserRoutes/ResetPassword";
+import PassUpdated from "./routes/UserRoutes/PassUpdated";
 
 const LoggedRoutes = () => {
   const isUserLogged = useSelector(selectLogged);
 
-  return isUserLogged ? <Outlet /> : <Home />;
+  return isUserLogged ? <Outlet /> : <NotFound />;
+};
+
+const NotLoggedRoutes = () => {
+  const isUserLogged = useSelector(selectLogged);
+
+  return !isUserLogged ? <Outlet /> : <NotFound />;
 };
 
 const InactiveUserRoutes = () => {
@@ -55,6 +63,13 @@ export function App() {
               <Route path="/" element={<Home />} />
               <Route path="about" element={<About />} />
               <Route path="terms" element={<Terms />} />
+
+              <Route element={<NotLoggedRoutes />} >
+
+                <Route path="reset-password/:token" element={<ResetPassword />} />
+                <Route path="pass-updated" element={<PassUpdated />} />
+
+              </Route>
             
               <Route element={<LoggedRoutes />} >
 

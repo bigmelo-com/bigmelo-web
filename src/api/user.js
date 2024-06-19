@@ -1,4 +1,4 @@
-import { authenticatedRequest } from "./requests";
+import { authenticatedRequest, unAuthenticatedRequest } from "./requests";
 
 export const sendSupportRequest = async (data) => {
   return authenticatedRequest.post("/v1/contact", data);
