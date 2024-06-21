@@ -11,7 +11,7 @@ export default function Footer() {
     >
       <Logo className="w-28 pb-6" />
       <nav className="text-white">
-        <ul className="flex flex-direction-row justify-content-center text-sm">
+        <ul className="flex flex-direction-row justify-content-center text-sm mt-3">
           <li className="pr-1">
             <Link
               to={`/about`}
@@ -25,7 +25,7 @@ export default function Footer() {
               Sobre Nosotros <span className="text-button"> - </span>
             </Link>
           </li>
-          <li>
+          <li className="pr-1">
             <Link
               to={`/terms`}
               onClick={() => {
@@ -35,7 +35,14 @@ export default function Footer() {
                 });
               }}
             >
-              Términos y condiciones
+              Términos y condiciones <span className="text-button"> - </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={import.meta.env.VITE_BLOG_LINK}
+            >
+              Blog
             </Link>
           </li>
         </ul>
